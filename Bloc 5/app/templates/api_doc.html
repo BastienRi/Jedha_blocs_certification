@@ -1,0 +1,102 @@
+<html>
+
+    <head>
+        <meta charset=""utf-8" />
+        <title>Wine quality predictor</title>
+    </head>
+	
+    <body>
+
+		<div margin: 60px;'>
+		  <h1 style='margin-top: 30px; color : #722F37'>Welcome to Wine quality prediction API !</h1>
+		  
+		  <p>This API allows you to use a <b>machine learning model</b> trained on wine data to predict its <b>quality score, which is between 0 and 10</b>.
+		  The data used are :</p>
+		  <ul style='padding: 15 px'>
+			<li style='padding: 5px; font-size: 15px; color: blue;'><b>Fixed acidity :</b> tartaric acid - g / dm^3</li>
+			<li style='padding: 5px; font-size: 15px; color: blue;'><b>Volatile acidity :</b> acetic acid - g / dm^3</li>
+			<li style='padding: 5px; font-size: 15px; color: blue;'><b>Citric acid</b> - g / dm^3</li>
+			<li style='padding: 5px; font-size: 15px; color: blue;'><b>Residual sugar</b> - g / dm^3</li>
+			<li style='padding: 5px; font-size: 15px; color: blue;'><b>Chlorides :</b> sodium chloride - g / dm^3</li>
+			<li style='padding: 5px; font-size: 15px; color: blue;'><b>Free sulfur dioxide</b> - mg / dm^3</li>
+			<li style='padding: 5px; font-size: 15px; color: blue;'><b>Total sulfur dioxide</b> - mg / dm^3</li>
+			<li style='padding: 5px; font-size: 15px; color: blue;'><b>Density</b> - g / cm^3</li>
+			<li style='padding: 5px; font-size: 15px; color: blue;'><b>PH</b> - level of acidity</li>
+			<li style='padding: 5px; font-size: 15px; color: blue;'><b>Sulphates :</b> potassium sulphate - g / dm3</li>
+			<li style='padding: 5px; font-size: 15px; color: blue;'><b>Alcohol</b> - % by volume</li>
+		  </ul>
+
+
+		  <h2 style='margin-top: 20px; color : #722F37'>How to use the API</h2>
+		  <p>API is located at <b>https://wineapp1002.herokuapp.com/predict/</b> . The model can take a single input or multiple ones. You can use it those ways :
+		  
+		  <ul style='padding: 15 px'>
+			<li style='padding: 5px; font-size: 15px;'><b>With python :</b> 
+			<br/>
+			You can use a python script to make the API requests. To do so you can use 'requests' library.<br/><br/>
+			<u>Example with simple input:</u><br/>
+			<i>
+			import requests<br/>
+			url = "https://wineapp1002.herokuapp.com/predict/"<br/>
+
+			input_simple = {
+				"input": [[7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8]]
+			}<br/>
+			res = requests.post(url, json=input_simple)<br/>
+			res.json()<br/>
+			<u>Output:</u> ['predict : ', [6]]
+			<br/><br/>
+			</i>
+			<u>Example with multiple inputs:</u><br/>
+			<i>
+			import requests<br/>
+			url = "https://wineapp1002.herokuapp.com/predict/"<br/>
+
+			input_multiple = {
+			"input": [[7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8],
+              [5.0, 0.98, 0.32, 18.9, 0.050, 75.0, 122.0, 0.401, 3.1, 0.21, 1.2]]
+			}<br/>
+			res = requests.post(url, json=input_multiple )<br/>
+			res.json()<br/>
+			<u>Output:</u> ['predict : ', [6, 5]]
+			<br/><br/>
+			</i>
+			
+			</li>
+			
+			<li style='padding: 5px; font-size: 15px;'><b>With shell :</b>
+			
+			<br/>
+			You can use the "curl" command like this :<br/><br/>
+			
+			<u>Example with simple input:</u><br/>
+			<i>
+			curl -i -H "Content-Type: application/json" -X POST -d '{"input": [[7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8]]}' https://wineapp1002.herokuapp.com/predict/<br/>
+			<u>Output:</u> ['predict : ', [6]]
+			</i><br/><br/>
+			
+			<u>Example with multiple inputs:</u><br/>
+			
+			<i>
+			curl -i -H "Content-Type: application/json" -X POST -d '{
+			"input": [[7.0, 0.27, 0.36, 20.7, 0.045, 45.0, 170.0, 1.001, 3.0, 0.45, 8.8], [5.0, 0.98, 0.32, 18.9, 0.050, 75.0, 122.0, 0.401, 3.1, 0.21, 1.2]]}' https://wineapp1002.herokuapp.com/predict/<br/>
+			<u>Output:</u> ['predict : ', [6, 5]]
+			</i>
+			
+
+			
+			
+			</li>
+		  </ul>
+		  
+		  </p>
+
+
+		</div>
+
+
+
+
+    </body>
+	
+</html>
